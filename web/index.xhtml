@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+  <h:head>
+    <title>Gestion bibliotheque</title>
+  </h:head>
+  <h:body>
+  <center>
+    <h2>Livres</h2>
+    <h:form>
+        Code livre : <h:inputText value="#{livre.code_livre}"></h:inputText>
+      Titre : <h:inputText value="#{livre.titre}"></h:inputText>
+      prix : <h:inputText id="prix" value="#{livre.prix}"></h:inputText>
+      Id Editeur : <h:inputText value="#{livre.idediteur}"></h:inputText>
+      <h:commandButton value="Add" action="#{livre.addBook}"></h:commandButton>
+    </h:form>
+    <h:form>
+        <h:dataTable value="#{livre.allLivre()}" var="list">
+    <h:column>
+      <f:facet name="header">List</f:facet>
+      <h:outputText value="#{list.code_livre}"></h:outputText>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Titre</f:facet>
+      <h:outputText value="#{list.titre}" ></h:outputText>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Prix</f:facet>
+      <h:outputText value="#{list.prix}" ></h:outputText>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Date d'achat</f:facet>
+      <h:outputText value="#{list.dateachat}" ></h:outputText>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Id Editeur</f:facet>
+      <h:outputText value="#{list.idediteur}" ></h:outputText>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Edit</f:facet>
+      <h:commandButton value="Edit" action="#{livre.updateBook}">
+        <f:param name="action" value="#{cat.sl_no}" />
+      </h:commandButton>
+    </h:column>
+    <h:column>
+      <f:facet name="header">Delete</f:facet>
+      <h:commandButton value="Delete" action="#{livre.deleteBook}">
+          <f:param name="action" value="#{list.code_livre}" />
+      </h:commandButton>
+    </h:column>
+    </h:dataTable>
+  </h:form>
+  </center>
+</h:body>
+</html>
